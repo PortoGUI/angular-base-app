@@ -1,0 +1,118 @@
+@import 'src/styles-utils/variables';
+
+:host {
+  width: 100%;
+}
+
+.button {
+  height: 30px;
+  width: 100%;
+  transition: 0.3s;
+  color: $color-accent;
+  cursor: pointer;
+  padding: 0 15px;
+}
+
+
+.main-button {
+  background-color: $color-main;
+
+  &:hover {
+    background-color: darken($color-main, 4);
+  }
+
+  &:not(.normal-style-button) {
+    color: $color-main;
+    border-color: $color-main !important;
+  }
+
+  &:hover:not(.normal-style-button) {
+    color: $color-accent;
+    background-color: $color-main;
+  }
+}
+
+
+.success-button {
+  background-color: $color-success;
+
+  &:hover {
+    background-color: darken($color-success, 4);
+  }
+
+  &:not(.normal-style-button) {
+    color: $color-success;
+    border-color: $color-success !important;
+  }
+
+  &:hover:not(.normal-style-button) {
+    color: $color-accent;
+    background-color: $color-success;
+  }
+}
+
+.warning-button {
+  background-color: $color-warn;
+
+  &:hover {
+    background-color: darken($color-warn, 4);
+  }
+
+  &:not(.normal-style-button) {
+    color: $color-warn;
+    border-color: $color-warn !important;
+  }
+
+  &:hover:not(.normal-style-button) {
+    color: $color-accent;
+    background-color: $color-warn;
+  }
+}
+
+.error-button {
+  background-color: $color-error;
+
+  &:hover {
+    background-color: darken($color-error, 4);
+  }
+
+  &:not(.normal-style-button) {
+    color: $color-error;
+    border-color: $color-error !important;
+  }
+
+  &:hover:not(.normal-style-button) {
+    color: $color-accent;
+    background-color: $color-error;
+  }
+}
+
+.default-button {
+  background-color: $color-default;
+  color: black;
+
+  &:hover {
+    background-color: darken($color-default, 4);
+  }
+
+  &:not(.normal-style-button) {
+    color: $color-default;
+    border-color: $color-default !important;
+  }
+
+  &:hover:not(.normal-style-button) {
+    color: black;
+    background-color: $color-default;
+  }
+}
+
+.normal-style-button {
+  border-radius: $border-radius;
+  border: none;
+}
+
+.outline-style-button {
+  background-color: transparent;
+  border: none;
+  border-radius: $border-radius;
+}

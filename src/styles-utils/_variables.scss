@@ -1,51 +1,58 @@
-$color-main: #3a6dee;
+$color-main: #7092DB;
 $color-success: #57E1BD;
 $color-warn: #ff8145;
 $color-error: #FF6584;
 $color-default: #E6E6E6;
 
-$white-color: #FFF;
-$background-color-light: #E8E8E8;
-$border-color: #DDD;
+$color-accent: #FFF;
+$color-background: #E8E8E8;
+//$color-background-dark: #2F2E41;
 
-$font-color: #2F2E41;
-$font-size: 14px;
+$border-color: #BCBCBC;
+$border-radius: 3px;
+
+$font-color: #1C1C1C;
+$font-size: 11px;
+
+$padding: 10px;
+
+$box-shadow: 0 12px 18px 2px #2200330a,0 6px 22px 4px #0730721f,0 6px 10px -4px #0e0d1a1f;
 
 $main-palette: (
-        50: lighten($color-main, 80),
-        100: lighten($color-main, 60),
-        200: lighten($color-main, 40),
-        300: lighten($color-main, 20),
-        400: lighten($color-main, 10),
-        500: $color-main,
-        600: darken($color-main, 10),
-        700: darken($color-main, 20),
-        800: darken($color-main, 30),
-        900: darken($color-main, 40)
+  50: lighten($color-main, 80),
+  100: lighten($color-main, 60),
+  200: lighten($color-main, 40),
+  300: lighten($color-main, 20),
+  400: lighten($color-main, 10),
+  500: $color-main,
+  600: darken($color-main, 10),
+  700: darken($color-main, 20),
+  800: darken($color-main, 30),
+  900: darken($color-main, 40)
 );
 
 $accent-palette: (
-        50: lighten($color-default, 80),
-        100: lighten($color-default, 60),
-        200: lighten($color-default, 40),
-        300: lighten($color-default, 20),
-        400: lighten($color-default, 10),
-        500: $color-default,
-        600: darken($color-default, 10),
-        700: darken($color-default, 20),
-        800: darken($color-default, 30),
-        900: darken($color-default, 40)
+  50: lighten($color-default, 80),
+  100: lighten($color-default, 60),
+  200: lighten($color-default, 40),
+  300: lighten($color-default, 20),
+  400: lighten($color-default, 10),
+  500: $color-default,
+  600: darken($color-default, 10),
+  700: darken($color-default, 20),
+  800: darken($color-default, 30),
+  900: darken($color-default, 40)
 );
 
 $warn-palette: (
-        50: lighten($color-warn, 80),
-        100: lighten($color-warn, 60),
-        200: lighten($color-warn, 40),
-        300: lighten($color-warn, 20),
-        400: lighten($color-warn, 10),
-        500: $color-warn,
-        600: darken($color-warn, 10),
-        700: darken($color-warn, 20),
-        800: darken($color-warn, 30),
-        900: darken($color-warn, 40)
+  50: lighten($color-warn, 80),
+  100: lighten($color-warn, 60),
+  200: lighten($color-warn, 40),
+  300: lighten($color-warn, 20),
+  400: lighten($color-warn, 10),
+  500: $color-warn,
+  600: darken($color-warn, 10),
+  700: darken($color-warn, 20),
+  800: darken($color-warn, 30),
+  900: darken($color-warn, 40)
 )
