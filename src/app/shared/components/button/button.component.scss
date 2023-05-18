@@ -11,6 +11,10 @@
   color: $color-accent;
   cursor: pointer;
   padding: 0 15px;
+
+  & > span {
+    font-weight: bold;
+  }
 }
 
 
