@@ -24,7 +24,6 @@
 
   &:placeholder-shown ~ .input-label {
     font-size: 1em;
-    cursor: text;
     top: 15px;
   }
 
@@ -37,15 +36,11 @@
 .ez-input:hover {
   border: 0;
   border-bottom: solid 2px $color-main;
-  border-image: linear-gradient(to right, $color-main 60%, #fff);
-  border-image-slice: 1;
 }
 
 .ez-input:focus {
   border: 0;
   border-bottom: solid 2px $color-main;
-  border-image: linear-gradient(to right, $color-main 60%, #fff);
-  border-image-slice: 1;
 
   ~ .input-label {
     position: absolute;
@@ -68,5 +63,7 @@
   left: 6px;
   transition: 0.2s;
   font-size: 1em;
-  color: lighten(invert($color-accent), 60);
+  color: lighten(invert($color-white), 60);
+  cursor: default;
+  user-select: none;
 }

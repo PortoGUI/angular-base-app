@@ -1,18 +1,20 @@
-$color-main: #6b83af;
+// project base colors
+$color-main: #C588EA;
 $color-success: #8BE836;
 $color-warn: #FFC142;
 $color-error: #E83938;
-$color-default: #FAFAFA;
+$color-default: #CECECE;
+$color-background: #F8F8F8;
 
-$color-accent: #FFF;
-$color-background: #E8E8E8;
+$color-white: #FFF;
+$color-black: #000;
 
-$border-color: #BCBCBC;
+$color-font: #1C1C1C;
+
+// default values
+$font-size: 14px;
+
 $border-radius: 3px;
-
-$font-color: #1C1C1C;
-$font-size: 11px;
-
 $padding: 10px;
 
-$box-shadow: 0 12px 18px 2px #2200330a, 0 6px 22px 4px #0730721f, 0 6px 10px -4px #0e0d1a1f;
+$box-shadow: 0 1px 3px rgba($color-black, 0.3);

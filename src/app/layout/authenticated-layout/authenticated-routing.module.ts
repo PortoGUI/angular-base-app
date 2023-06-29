@@ -1,21 +1,24 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {AuthenticatedLayoutComponent} from "./authenticated-layout.component";
-import {ProfileComponent} from "../../pages/profile/profile.component";
-import {NotFoundComponent} from "../../shared/pages/not-found/not-found.component";
+import {AuthenticatedLayoutComponent} from './authenticated-layout.component';
+import {ProfileComponent} from '../../pages/profile/profile.component';
+import {NotFoundComponent} from '../../shared/pages/not-found/not-found.component';
 
 const routes: Routes = [
-    {
-        path: '', component: AuthenticatedLayoutComponent,
-        children: [{path: 'profile', component: ProfileComponent}],
-    },
-    {path: '**', component: NotFoundComponent},
+  {
+    path: '', component: AuthenticatedLayoutComponent,
+    children: [{path: 'profile', component: ProfileComponent}],
+  },
+  {
+    path: '**', component: NotFoundComponent,
+    loadChildren: () => import('../../shared/pages/not-found/not-found.module').then((m) => m.NotFoundModule),
+  },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 export class AuthenticatedRoutingModule {
 }

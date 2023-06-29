@@ -1,0 +1,59 @@
+@import "src/styles-utils/variables.scss";
+
+:host {
+  display: flex;
+  align-items: center;
+}
+
+#check-input {
+  display: none;
+
+  &:checked + #custom-check {
+    &::before {
+      background-color: $color-main;
+      border: none;
+    }
+
+    &::after {
+      opacity: 1;
+    }
+  }
+
+}
+
+#custom-check {
+  cursor: pointer;
+  position: relative;
+  padding-left: 20px;
+  display: inline-block;
+  color: lighten($color-black, 60);
+  padding-top: 1px;
+  user-select: none;
+
+  &::before {
+    left: 0;
+    top: 2px;
+    content: "";
+    width: 16px;
+    height: 16px;
+    border-radius: $border-radius;
+    position: absolute;
+    display: inline-block;
+    background-color: transparent;
+    border: 1px solid $color-default;
+  }
+
+  &::after {
+    top: 0;
+    left: 3px;
+    opacity: 0;
+    content: "\2713";
+    position: absolute;
+    color: $color-default;
+  }
+
+  &:active {
+    filter: brightness(0.7);
+  }
+}
+

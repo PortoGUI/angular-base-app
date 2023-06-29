@@ -1,9 +1,18 @@
 @import "../src/styles-utils/variables.scss";
 
-* {
-  font-family: Roboto, sans-serif;
-  color: $font-color;
+*:not(h1,h2,h3,h4,h5,h6) {
+  font-family: system-ui, -apple-system, "Segoe UI",
+  Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans",
+  Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  color: $color-font;
   font-size: $font-size;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: system-ui, -apple-system, "Segoe UI",
+  Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans",
+  Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  color: $color-font;
 }
 
 html, body {
@@ -13,4 +22,5 @@ html, body {
   width: 100vw;
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }

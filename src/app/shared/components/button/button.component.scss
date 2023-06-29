@@ -8,15 +8,20 @@
   height: 30px;
   width: 100%;
   transition: 0.3s;
-  color: $color-accent;
+  color: $color-white;
   cursor: pointer;
   padding: 0 15px;
+  box-shadow: $box-shadow;
 
   & > span {
     font-weight: bold;
   }
-}
 
+  &:active {
+    filter: brightness(0.7);
+    box-shadow: none;
+  }
+}
 
 .main-button {
   background-color: $color-main;
@@ -31,7 +36,7 @@
   }
 
   &:hover:not(.normal-style-button) {
-    color: $color-accent;
+    color: $color-white;
     background-color: $color-main;
   }
 }
@@ -50,7 +55,7 @@
   }
 
   &:hover:not(.normal-style-button) {
-    color: $color-accent;
+    color: $color-white;
     background-color: $color-success;
   }
 }
@@ -68,7 +73,7 @@
   }
 
   &:hover:not(.normal-style-button) {
-    color: $color-accent;
+    color: $color-white;
     background-color: $color-warn;
   }
 }
@@ -86,7 +91,7 @@
   }
 
   &:hover:not(.normal-style-button) {
-    color: $color-accent;
+    color: $color-white;
     background-color: $color-error;
   }
 }

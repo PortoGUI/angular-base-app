@@ -1,21 +1,24 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {AuthenticationLayoutComponent} from "./authentication-layout.component";
-import {AuthenticationRoutingModule} from "./authentication-routing.module";
-import {ButtonModule} from "../../shared/components/button/button.module";
-import {LinkerModule} from "../../shared/components/linker/linker.module";
-import {InputModule} from "../../shared/components/input/input.module";
 
+import {InputModule} from '../../shared/components/input/input.module';
+import {ButtonModule} from '../../shared/components/button/button.module';
+import {LinkerModule} from '../../shared/components/linker/linker.module';
+import {AuthenticationRoutingModule} from './authentication-routing.module';
+
+import {AuthenticationLayoutComponent} from './authentication-layout.component';
+import {CheckBoxModule} from '../../shared/components/check-box/check-box.module';
 
 @NgModule({
-    declarations: [AuthenticationLayoutComponent],
-    imports: [
-        CommonModule,
-        AuthenticationRoutingModule,
-        ButtonModule,
-        LinkerModule,
-        InputModule
-    ]
+  declarations: [AuthenticationLayoutComponent],
+  imports: [
+    InputModule,
+    CommonModule,
+    ButtonModule,
+    LinkerModule,
+    AuthenticationRoutingModule,
+    CheckBoxModule
+  ]
 })
 export class AuthenticationLayoutModule {
 }

@@ -1,61 +1,80 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+
+import {Subscription} from 'rxjs';
 
 import {SnacksUtils} from '../../shared/utils/snacks-utils';
 import {GlobalUtils} from '../../shared/utils/global-utils';
+
+import {ScreenService, ScreenType} from '../../shared/services/screen.service';
 
 @Component({
   selector: 'ez-authentication-layout',
   styleUrls: ['./authentication-layout.component.scss'],
   template: `
-    <ng-container>
-      <div id="content-authentication" class="h-100 d-flex justify-content-center align-items-sm-center">
-        <div id="card-authentication" class="mt-5 mt-md-auto mx-3 mx-md-auto mb-auto">
+      <ng-container>
           <div class="row">
-            <div class="col-12 mb-2 d-flex justify-content-center align-items-center">
-              <img title="register here" id="logo" src="../../../assets/svg/plus.svg" alt="Logo Enterprise" (click)="registerClick()">
-            </div>
+              <div class="col-md-4 p-5">
+                  <ng-container [ngTemplateOutlet]="LoginTemplate"></ng-container>
+              </div>
+              <ng-container *ngIf="screen > screenType.MEDIUM">
+                  <div class="col-8">
+                      <div id="image-login"></div>
+                  </div>
+              </ng-container>
           </div>
-          <div class="col-12 d-flex justify-content-center align-items-center">
-            <h4>Sign in or register</h4>
-          </div>
+      </ng-container>
+
+      <ng-template #LoginTemplate>
           <form>
-            <div class="row">
-              <div class="col-12 mb-3">
-                <ez-input [(value)]="credentials.login" type="text" placeholder="E-mail / Username"></ez-input>
+              <div class="row">
+                  <div class="col-12 mb-3">
+                      <h1>Welcome Back</h1>
+                  </div>
+                  <div class="col-12 mb-5">
+                      <ez-input [(value)]="credentials.login" type="text" placeholder="E-mail / Username"></ez-input>
+                  </div>
+                  <div class="col-12 mb-3">
+                      <ez-input [(value)]="credentials.password" type="password" placeholder="Password"></ez-input>
+                  </div>
+                  <div class="col-12 mb-3 mt-5">
+                      <div class="row g-0">
+                          <div class="col-6">
+                              <ez-check-box [(value)]="remember" text="Remember Password"></ez-check-box>
+                          </div>
+                          <div class="col-6 d-flex justify-content-end align-items-center">
+                              <ez-linker (clicker)="forgotClick()">Forgot password</ez-linker>
+                          </div>
+                      </div>
+                  </div>
               </div>
-              <div class="col-12 mb-3">
-                <ez-input [(value)]="credentials.password" type="password" placeholder="Password"></ez-input>
-              </div>
-              <div class="col-12 mb-3 d-flex justify-content-end align-items-center">
-                <ez-linker (clicker)="forgotClick()">Forgot my password</ez-linker>
-              </div>
-            </div>
           </form>
           <div class="row">
-            <div class="col-12 mt-2 d-flex justify-content-center align-items-center">
-              <ez-button text="Sign in" styleType="main-button" (clicker)="singInClick()"></ez-button>
-            </div>
+              <div class="col-12 mt-2 d-flex justify-content-center align-items-center">
+                  <ez-button text="Sign in" styleType="main-button" (clicker)="singInClick()"></ez-button>
+              </div>
           </div>
-        </div>
-      </div>
-    </ng-container>
-
-    <ul class="circles">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
+      </ng-template>
   `,
 })
-export class AuthenticationLayoutComponent {
+export class AuthenticationLayoutComponent implements OnInit, OnDestroy {
   credentials: Credentials = new Credentials();
+  subscriber: Subscription;
+
+  screen: ScreenType;
+  screenType = ScreenType;
+  remember: boolean
+  constructor(private screenService: ScreenService) {
+  }
+
+  ngOnInit() {
+    this.subscriber = this.screenService.screenChange.subscribe((type: ScreenType) => this.screen = type);
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscriber) {
+      this.subscriber.unsubscribe();
+    }
+  }
 
   forgotClick(): void {
     if (GlobalUtils.isValid(this.credentials.login)) {
@@ -64,9 +83,9 @@ export class AuthenticationLayoutComponent {
     }
   }
 
-  registerClick(): void {
-    SnacksUtils.warn('Temporarily unavailable');
-  }
+  // registerClick(): void {
+  //   SnacksUtils.warn('Temporarily unavailable');
+  // }
 
   singInClick(): void {
     let message = '';

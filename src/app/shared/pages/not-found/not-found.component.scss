@@ -1,0 +1,20 @@
+@import "src/styles-utils/variables";
+
+#not-found {
+  display: flex;
+  height: 100vh;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-warn;
+  background-image: url(../../../../assets/svg/not-found.svg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#message {
+  text-align: center;
+  color: $color-default
+}
+
