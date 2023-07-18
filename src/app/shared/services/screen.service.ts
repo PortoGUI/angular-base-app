@@ -1,27 +1,23 @@
-import {EventEmitter, Injectable,} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
+import {Injectable, NgZone} from '@angular/core';
+
+import {BehaviorSubject, fromEvent} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScreenService {
-  screenChange: EventEmitter<ScreenType> = new EventEmitter<ScreenType>();
-
-  private eventActive: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  screenChange: BehaviorSubject<ScreenType> = new BehaviorSubject<ScreenType>(ScreenType.SMALL);
   private currentScreen: ScreenType;
+  private resizeScheduled = false;
 
-  constructor() {
-    if (!this.eventActive.getValue()) {
-      this.addResizeListener();
-    }
+  constructor(private zn: NgZone) {
+    this.addResizeListener();
   }
 
   init(): void {
-    setTimeout(() => {
-      this.currentScreen = this.getScreenType();
-      this.screenChange.emit(this.currentScreen);
-      console.log('%cScreen Observer is Running', 'color: #00FF00; font-weight: bold');
-    });
+    this.currentScreen = this.getScreenType();
+    this.screenChange.next(this.currentScreen);
+    console.log('%cScreen Observer is Running', 'color: #00FF00; font-weight: bold');
   }
 
   private getScreenType(): ScreenType {
@@ -37,13 +33,22 @@ export class ScreenService {
   }
 
   private addResizeListener(): void {
-    this.eventActive.next(true);
-    window.addEventListener('resize', () => {
-      const newResolution: ScreenType = this.getScreenType();
-      if (newResolution !== this.currentScreen) {
-        this.currentScreen = newResolution;
-        this.screenChange.emit(this.currentScreen);
-      }
+    this.zn.runOutsideAngular(() => {
+      fromEvent(window, 'resize').subscribe(() => {
+        if (!this.resizeScheduled) {
+          this.resizeScheduled = true;
+          window.requestAnimationFrame(() => {
+            const newResolution: ScreenType = this.getScreenType();
+            if (newResolution !== this.currentScreen) {
+              this.zn.run(() => {
+                this.currentScreen = newResolution;
+                this.screenChange.next(this.currentScreen);
+              });
+            }
+            this.resizeScheduled = false;
+          });
+        }
+      });
     });
   }
 }
